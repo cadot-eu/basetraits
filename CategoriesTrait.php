@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Entity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
+trait CategoriesTrait
+{
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
+    #[ORM\ManyToMany(targetEntity: Categorie::class, cascade: ["remove", "persist"])]
+    /**
+     * entity
+     * label:nom
+     * OPT:{"help":"multiple sélection avec CTRL"}
+     * OPT:{"required":false}
+     * tpl:no_index
+     */
+    private $categories;
+    /**
+     * @return Collection<int, Categorie>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+    public function getCategoriesjoin(): String
+    {
+        $res = '';
+        foreach ($this->categories as $cat) {
+            $res .= $cat->getNom() . ',';
+        }
+        return substr($res, 0, -1);
+    }
+    public function hasCategorie(?Categorie $category): bool
+    {
+        if ($category == null) return false;
+        foreach ($this->categories as $cat) {
+            if ($cat == $category) return true;
+        }
+        return false;
+    }
+}
