@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\base;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\DBAL\Types\Types;
