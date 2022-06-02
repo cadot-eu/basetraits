@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait SituationTrait
 {
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     /**
      * choiceenplace
      * xtra:{"champ":"situation"}
