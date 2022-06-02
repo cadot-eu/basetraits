@@ -11,6 +11,7 @@ trait VerifiedTrait
     #[ORM\Column(type: Types::BOOLEAN)]
     /**
      * choiceenplace
+     * xtra:{"champ":"etat"}
      * options:{"0":"<i class=\"bi bi-toggle-off\"></i>","1":"<i class=\"bi bi-toggle-on\"></i>"}
      * TPL:no_form
      */
