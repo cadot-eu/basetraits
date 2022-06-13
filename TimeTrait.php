@@ -2,6 +2,7 @@
 
 namespace App\Entity\base;
 
+use DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -38,6 +39,7 @@ trait TimeTrait
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * opt:{"label":"Créé le"}
+     * TPL:no_form
      */
     private $createdAt;
 
@@ -46,12 +48,6 @@ trait TimeTrait
         return $this->createdAt;
     }
 
-    public function setcreatedAt(?\DateTime $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
@@ -66,7 +62,8 @@ trait TimeTrait
 
     public function setupdatedAt(?\DateTime $updatedAt): self
     {
-        $this->updatedAt = $updatedAt;
+        if (!$this->createdAt) $this->createdAt =  new DateTime();
+        $this->updatedAt = $updatedAt ?: new DateTime();
 
         return $this;
     }
