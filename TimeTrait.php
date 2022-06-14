@@ -62,9 +62,13 @@ trait TimeTrait
 
     public function setupdatedAt(?\DateTime $updatedAt): self
     {
-        if (!$this->createdAt) $this->createdAt =  new DateTime();
-        $this->updatedAt = $updatedAt ?: new DateTime();
-
+        if (!$this->updatedAt) {
+            $this->updatedAt =  new DateTime();
+        } else
+            $this->updatedAt = $updatedAt;
+        if (!$this->createdAt) {
+            $this->createdAt =  new DateTime();
+        }
         return $this;
     }
 }
