@@ -47,7 +47,12 @@ trait TimeTrait
     {
         return $this->createdAt;
     }
+    public function setcreatedAt(?\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
+        return $this;
+    }
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
