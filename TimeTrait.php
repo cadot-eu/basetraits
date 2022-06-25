@@ -50,7 +50,7 @@ trait TimeTrait
     public function setcreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
-
+        $this->updatedAt = $createdAt;
         return $this;
     }
 
