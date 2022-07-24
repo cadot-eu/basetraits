@@ -25,10 +25,13 @@ trait CategoriesTrait
      */
     private $categories;
     /**
-     * @return Collection<int, Categorie>
+     * @return Collection
      */
     public function getCategories(): Collection
     {
+        if ($this->categories == null) {
+            $this->categories = new ArrayCollection();
+        }
         return $this->categories;
     }
 
