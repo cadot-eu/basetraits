@@ -19,7 +19,7 @@ trait CategoriesTrait
     /**
      * entity
      * label:nom
-     * OPT:{"help":"multiple sélection avec CTRL"}
+     * OPT:{"help":"multiple sélection et retirer une sélection avec CTRL + click"}
      * OPT:{"required":false}
      * tpl:no_index
      */
