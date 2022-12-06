@@ -1,4 +1,7 @@
 {
+"8dbc149":{  "subject": "maj vers php 8.1.2 et update de composer",
+  "date": "Sat, 26 Nov 2022 08:41:20 +0100"
+ },
 "f91db91":{  "subject": "connexion avec les entreprises et graphiques. Création des slugs automatiquement.",
   "date": "Thu, 24 Nov 2022 15:34:55 +0100"
  },
