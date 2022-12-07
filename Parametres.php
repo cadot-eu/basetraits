@@ -35,15 +35,15 @@ class Parametres
 	private $id;
 
 	/**
-	 * attr:{"data-controller" : "base--ckeditor"}
-	 * attr:{"data-base--ckeditor-toolbar-value": "§$AtypeOption[\"data\"]->getTypenom()§"}
+	 * attr:{"data-controller" : "base--suneditor"}
+	 * attr:{"data-base--suneditor--toolbar-value": "§$AtypeOption[\"data\"]->getTypenom()§"}
 	 */
 	#[ORM\Column(type: Types::STRING, length: 255, unique: true)]
 	private $nom;
 
 	/**
-	 * attr:{"data-controller" : "base--ckeditor"}
-	 * attr:{"data-base--ckeditor-toolbar-value": "§$AtypeOption[\"data\"]->getTypevaleur()§"}
+	 * attr:{"data-controller" : "base--suneditor"}
+	 * attr:{"data-base--suneditor--toolbar-value": "§$AtypeOption[\"data\"]->getTypevaleur()§"}
 	 */
 	#[ORM\Column(type: Types::TEXT, nullable: true)]
 	private $valeur;
