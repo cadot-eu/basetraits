@@ -2,7 +2,7 @@
 
 namespace App\Entity\base;
 
-use App\Repository\base\ChatmessageRepository;
+use App\Repository\ChatmessageRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\base\TimeTrait;
