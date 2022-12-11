@@ -8,29 +8,17 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait SlugTrait
 {
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    #[Gedmo\Slug(fields: ["pourSlug"], unique: true, updatable: true)]
-    /** 
-     * slug
-     * OPT:{"disabled":true}
-     * OPT:{"required":false} 
-     * OPT:{"label":"url"} 
-     */
-    private $slug;
+    #[ORM\Column(length: 50, nullable: true)] //nullable=true pour supporter ancienne base de donnée, pas d'unique pour la même raison
+    private ?string $slug = null;
     public function getSlug(): ?string
     {
         return $this->slug;
     }
+
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    /**
-     * tpl:no_form
-     * tpl:no_index
-     * tpl:no_show
-     */
-    private $pourSlug;
 }
