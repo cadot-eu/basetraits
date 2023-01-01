@@ -57,6 +57,7 @@ trait TimeTrait
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * opt:{"label":"Mis à jour le"}
+     * tpl:no_form
      */
     private $updatedAt;
 
