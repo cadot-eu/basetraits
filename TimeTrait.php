@@ -9,6 +9,21 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait TimeTrait
 {
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps(): void
+    {
+        $dateTimeNow = new DateTime('now');
+
+        $this->setUpdatedAt($dateTimeNow);
+
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt($dateTimeNow);
+        }
+    }
+
     private function uploadMax()
     {
         $max_upload = (int) (ini_get('upload_max_filesize'));
@@ -39,7 +54,6 @@ trait TimeTrait
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * opt:{"label":"Créé le"}
-     * TPL:no_form
      */
     private $createdAt;
 
@@ -57,7 +71,6 @@ trait TimeTrait
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * opt:{"label":"Mis à jour le"}
-     * tpl:no_form
      */
     private $updatedAt;
 
