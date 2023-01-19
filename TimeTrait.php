@@ -16,8 +16,9 @@ trait TimeTrait
     public function updatedTimestamps(): void
     {
         $dateTimeNow = new DateTime('now');
-
-        $this->setUpdatedAt($dateTimeNow);
+        if ($this->getUpdatedAt() === null) {
+            $this->setUpdatedAt($dateTimeNow);
+        }
 
         if ($this->getCreatedAt() === null) {
             $this->setCreatedAt($dateTimeNow);
