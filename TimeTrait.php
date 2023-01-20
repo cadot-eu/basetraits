@@ -55,6 +55,7 @@ trait TimeTrait
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * opt:{"label":"Créé le"}
+     * TPL:no_form
      */
     private $createdAt;
 
@@ -72,6 +73,7 @@ trait TimeTrait
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * opt:{"label":"Mis à jour le"}
+     * TPL:no_form
      */
     private $updatedAt;
 
