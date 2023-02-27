@@ -2,37 +2,46 @@
 
 namespace App\Entity\base;
 
-use DateTime;
+use DATE;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ORM\HasLifecycleCallbacks;
+use DateTime;
 
 trait TimeTrait
 {
     /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
+     * opt:{"label":"Créé le"}
+     * TPL:no_form
      */
-    public function updatedTimestamps(): void
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private $createdAt;
+    /**
+     * opt:{"label":"Mis à jour le"}
+     * opt:{"widget":"single_text"}
+     * attr:{"data-controller":"base--resetinput"}
+     */
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private $updatedAt;
+    public function getCreatedAt(): ?DateTime
     {
-        $dateTimeNow = new DateTime('now');
-        if ($this->getUpdatedAt() === null) {
-            $this->setUpdatedAt($dateTimeNow);
-        }
-
-        if ($this->getCreatedAt() === null) {
-            $this->setCreatedAt($dateTimeNow);
-        }
+        return $this->createdAt;
     }
-
-    private function uploadMax()
+    public function setCreatedAt(?DateTime $createdAt): self
     {
-        $max_upload = (int) (ini_get('upload_max_filesize'));
-        $max_post = (int) (ini_get('post_max_size'));
-        $memory_limit = (int) (ini_get('memory_limit'));
-        return (min($max_upload, $max_post, $memory_limit));
+        $this->createdAt = $createdAt;
+        return $this->updatedTimestamps();
     }
-
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function setUpdatedAt(?DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this->updatedTimestamps();
+    }
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * TPL:no_form
@@ -40,56 +49,27 @@ trait TimeTrait
      */
     private $deletedAt;
 
-    public function getDeletedAt(): ?\DateTime
+    public function getDeletedAt(): ?\DATE
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(?\DateTime $deletedAt): self
+    public function setDeletedAt(?DateTime $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
 
         return $this;
     }
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    /**
-     * opt:{"label":"Créé le"}
-     * TPL:no_form
-     */
-    private $createdAt;
-
-    public function getcreatedAt(): ?\DateTime
+    public function updatedTimestamps()
     {
-        return $this->createdAt;
-    }
-    public function setcreatedAt(?\DateTime $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $createdAt;
-        return $this;
-    }
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    /**
-     * opt:{"label":"Mis à jour le"}
-     * TPL:no_form
-     */
-    private $updatedAt;
+        $DATENow = new DateTime('now');
+        if ($this->getUpdatedAt() === null) {
+            $this->setUpdatedAt($DATENow);
+        }
 
-    public function getupdatedAt(): ?\DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    public function setupdatedAt(?\DateTime $updatedAt): self
-    {
-        if (!$this->updatedAt) {
-            $this->updatedAt =  new DateTime();
-        } else
-            $this->updatedAt = $updatedAt;
-        if (!$this->createdAt) {
-            $this->createdAt =  new DateTime();
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt($DATENow);
         }
         return $this;
     }
