@@ -10,6 +10,7 @@ trait SlugTrait
 {
     #[ORM\Column(length: 100, nullable: true)] //nullable=true pour supporter ancienne base de donnée, pas d'unique pour la même raison
     private ?string $slug = null;
+
     public function getSlug(): ?string
     {
         return $this->slug;
