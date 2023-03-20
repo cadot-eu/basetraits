@@ -49,7 +49,7 @@ trait TimeTrait
      */
     private $deletedAt;
 
-    public function getDeletedAt(): ?\DATE
+    public function getDeletedAt(): ?\DateTime
     {
         return $this->deletedAt;
     }
