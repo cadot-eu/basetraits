@@ -5,6 +5,7 @@ namespace App\Entity\base;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 trait SlugTrait
 {
@@ -13,11 +14,17 @@ trait SlugTrait
 
     public function getSlug(): ?string
     {
+        if ($this->getNom() && null === $this->slug) {
+            $this->slug = (new AsciiSlugger())->slug($this->getNom())->lower();
+        }
         return $this->slug;
     }
 
     public function setSlug(?string $slug): self
     {
+        if (null === $slug) {
+            $slug = (new AsciiSlugger())->slug($this->getNom())->lower();
+        }
         $this->slug = $slug;
 
         return $this;
