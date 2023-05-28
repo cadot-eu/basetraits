@@ -82,4 +82,12 @@ trait CategoriesTrait
         }
         return $this;
     }
+    public function getCategoriesArrayofNom(): array
+    {
+        $res = [];
+        foreach ($this->categories as $cat) {
+            $res[] = $cat->getNom();
+        }
+        return $res;
+    }
 }
