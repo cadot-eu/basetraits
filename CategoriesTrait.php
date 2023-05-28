@@ -43,7 +43,12 @@ trait CategoriesTrait
 
         return $this;
     }
+    public function setCategories($categories): self
+    {
+        $this->categories = $categories;
 
+        return $this;
+    }
     public function removeCategory(Categorie $category): self
     {
         $this->categories->removeElement($category);
@@ -69,5 +74,12 @@ trait CategoriesTrait
             }
         }
         return false;
+    }
+    public function removeAllCategory(): self
+    {
+        foreach ($this->categories as $cat) {
+                $this->categories->removeElement($cat);
+        }
+        return $this;
     }
 }
