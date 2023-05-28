@@ -50,7 +50,7 @@ trait CategoriesTrait
 
         return $this;
     }
-    public function getCategoriesjoin(): String
+    public function getCategoriesjoin(): string
     {
         $res = '';
         foreach ($this->categories as $cat) {
@@ -60,9 +60,13 @@ trait CategoriesTrait
     }
     public function hasCategorie(?Categorie $category): bool
     {
-        if ($category == null) return false;
+        if ($category == null) {
+            return false;
+        }
         foreach ($this->categories as $cat) {
-            if ($cat == $category) return true;
+            if ($cat == $category) {
+                return true;
+            }
         }
         return false;
     }
