@@ -14,21 +14,14 @@ trait SlugTrait
 
     public function getSlug(): ?string
     {
-        // on détermine le slug
-        $array = ['Nom','Titre'];
-        foreach ($array as $value) {
-            $function = 'get' . $value;
-            if (\function_exists($function) && $this->$function() && null === $this->slug) {
-                $this->slug = (new AsciiSlugger())->slug($this->$function())->lower();
-                break;
-            }
-        }
+
         return $this->slug;
     }
 
     public function setSlug(?string $slug): self
     {
         if (null === $slug) {
+            dump('ok');
             $slug = (new AsciiSlugger())->slug($this->getNom())->lower();
         }
         $this->slug = $slug;
