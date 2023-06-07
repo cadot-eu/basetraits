@@ -14,14 +14,15 @@ trait SlugTrait
 
     public function getSlug(): ?string
     {
-
+        if (null === $this->slug) {
+            return (new AsciiSlugger())->slug($this->getNom())->lower();
+        }
         return $this->slug;
     }
 
     public function setSlug(?string $slug): self
     {
         if (null === $slug) {
-            dump('ok');
             $slug = (new AsciiSlugger())->slug($this->getNom())->lower();
         }
         $this->slug = $slug;
