@@ -14,7 +14,7 @@ trait SlugTrait
 
     public function getSlug(): ?string
     {
-        if (null === $this->slug && $this->getNom() !== null) {
+        if (null === $this->slug && method_exists($this, 'getNom') && $this->getNom() !== null) {
             return (new AsciiSlugger())->slug($this->getNom())->lower();
         }
         return $this->slug;
@@ -22,7 +22,7 @@ trait SlugTrait
 
     public function setSlug(?string $slug): self
     {
-        if (null === $slug) {
+        if (null === $slug && method_exists($this, 'getNom')) {
             $slug = (new AsciiSlugger())->slug($this->getNom())->lower();
         }
         $this->slug = $slug;
