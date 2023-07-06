@@ -63,4 +63,8 @@ trait TimeTrait
 
         return $this;
     }
+    public function getDeletedAt(): ?DateTime
+    {
+        return $this->deletedAt;
+    }
 }
