@@ -34,7 +34,19 @@ trait CategoriesTrait
         }
         return $this->categories;
     }
-
+    /**
+     * @return Collection
+     */
+    public function getSuperCats(): Collection
+    {
+        $res = new ArrayCollection();
+        foreach ($this->categories as $cat) {
+            if ($cat->getSupercat() != null) {
+                $res->add($cat->getSupercat());
+            }
+        }
+        return $res;
+    }
     public function addCategory(Categorie $category): self
     {
         if (!$this->categories->contains($category)) {
