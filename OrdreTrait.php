@@ -10,6 +10,7 @@ trait OrdreTrait
 {
     #[ORM\Column(type: 'integer', nullable: true)]
     /**
+     * order
      * tpl:no_form
      */
     private $ordre;
