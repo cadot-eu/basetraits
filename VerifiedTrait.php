@@ -27,4 +27,8 @@ trait VerifiedTrait
 
         return $this;
     }
+    public function getIsVerified(): bool
+    {
+        return $this->isVerified;
+    }
 }
