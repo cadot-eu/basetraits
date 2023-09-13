@@ -11,7 +11,7 @@ trait OrdreTrait
     #[ORM\Column(type: 'integer', nullable: true)]
     /**
      * order
-     * tpl:no_form
+     * hidden
      */
     private $ordre;
     public function getOrdre(): ?int
