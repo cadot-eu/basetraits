@@ -12,6 +12,7 @@ trait OrdreTrait
     /**
      * order
      * hidden
+     * tpl:no_index
      */
     private $ordre;
     public function getOrdre(): ?int
