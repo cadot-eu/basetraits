@@ -10,7 +10,6 @@ trait OrdreTrait
 {
     #[ORM\Column(type: 'integer', nullable: true)]
     /**
-     * order
      * hidden
      * tpl:no_index
      */
