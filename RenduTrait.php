@@ -9,6 +9,7 @@ use App\Service\base\ArticleHelper;
 
 trait RenduTrait
 {
+
     #[ORM\Column(type: Types::TEXT, nullable: true)] //hack pour forcer symfony à faire un set en mettant forçant sur une chaine vide
     /**
      * hidden
@@ -22,8 +23,7 @@ trait RenduTrait
     }
     public function setRendu(?string $rendu): static
     {
-        $articlehelper = new ArticleHelper();
-        $this->rendu = $articlehelper->getrendu($this);
+        $this->rendu = ArticleHelper::getrendu($this);
         return $this;
     }
 }
