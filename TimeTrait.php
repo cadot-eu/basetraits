@@ -16,21 +16,20 @@ trait TimeTrait
 {
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Gedmo\Timestampable(on: 'create')]
-     /**
+    /**
      * opt:{"label":"Créé le"}
      * TPL:no_form
      */
     private ?DateTime $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Gedmo\Timestampable(on: 'update')]
-     /**
+    /**
      * opt:{"label":"Mis à jour le"}
      * opt:{"widget":"single_text"}
      * attr:{"data-controller":"base--resetinput"}
      */
-    private ?DateTime $updatedAt = null;
-    public function setUpdatedAt(?DateTime $updatedAt): self
+    private ?DateTime $updatedAt;
+    public function setUpdatedAt(?DateTime $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
         return $this;
