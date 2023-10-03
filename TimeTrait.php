@@ -23,13 +23,13 @@ trait TimeTrait
     private ?DateTime $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Gedmo\Timestampable(on: 'update')]
     /**
      * opt:{"label":"Mis à jour le"}
      * opt:{"widget":"single_text"}
      * attr:{"data-controller":"base--resetinput"}
      */
     private ?DateTime $updatedAt = null;
+
     public function setUpdatedAt(?DateTime $updatedAt): self
     {
         if ($updatedAt === null) {
