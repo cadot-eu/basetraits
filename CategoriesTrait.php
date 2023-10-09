@@ -19,6 +19,7 @@ trait CategoriesTrait
     /**
      * entity
      * label:nom
+     * ordre:nom
      * OPT:{"help":"multiple sélection et retirer une sélection avec CTRL + click"}
      * OPT:{"required":false}
      * tpl:no_index
@@ -90,7 +91,7 @@ trait CategoriesTrait
     public function removeAllCategory(): self
     {
         foreach ($this->categories as $cat) {
-                $this->categories->removeElement($cat);
+            $this->categories->removeElement($cat);
         }
         return $this;
     }
