@@ -14,9 +14,9 @@ trait SlugTrait
 
     public function getSlug(): ?string
     {
-        // if (null === $this->slug && method_exists($this, 'getNom') && $this->getNom() !== null) {
-        //     return (new AsciiSlugger())->slug($this->getNom())->lower();
-        // }
+        if (null === $this->slug && method_exists($this, 'getNom') && $this->getNom() !== null) {
+            return (new AsciiSlugger())->slug($this->getNom())->lower();
+        }
         return $this->slug;
     }
 
