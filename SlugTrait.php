@@ -25,6 +25,12 @@ trait SlugTrait
         $ascii = new AsciiSlugger();
         if (null === $slug && method_exists($this, 'getNom')) {
             $slug = (new AsciiSlugger())->slug($this->getNom())->lower()->__toString();
+            if (strlen($slug) > 100) {
+                //on coupe par le dernier -
+                $slug = substr($slug, 0, strrpos($slug, '-'));
+                $uniqid = uniqid();
+                $slug = substr($slug . '-' . $uniqid, 0, 100);
+            }
         }
         $this->slug = $slug;
 
