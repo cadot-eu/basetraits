@@ -14,8 +14,9 @@ trait SituationTrait
      * xtra:{"champ":"situation"}
      * options:{"inactif":"<i class=\"bi bi-toggle-off\"></i>","actif":"<i class=\"bi bi-toggle-on\"></i>"}
      * OPT:{"expanded":true}
+     * opt:{"placeholder":false}
      */
-    private $situation="inactif";
+    private $situation = "inactif";
     public function getSituation(): ?string
     {
         if ($this->situation == null)
