@@ -2,20 +2,23 @@
 
 namespace App\Entity\base;
 
-use DATE;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ORM\HasLifecycleCallbacks;
 use DateTime;
 
-/**
- * @ORM\HasLifecycleCallbacks
- */
+#[ORM\HasLifecycleCallbacks]
 trait TimeTrait
 {
+    #[ORM\PrePersist]
+    public function initializeTimestamps(): void
+    {
+        $this->createdAt = new DateTime();
+        $this->updatedAt = new DateTime();
+    }
+
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Gedmo\Timestampable(on: 'create')]
     /**
      * opt:{"label":"Créé le"}
      * TPL:no_form
@@ -30,21 +33,21 @@ trait TimeTrait
      */
     private ?DateTime $updatedAt = null;
 
-    public function setUpdatedAt(?DateTime $updatedAt): self
-    {
-        if ($updatedAt === null) {
-            $updatedAt = new DateTime('now');
-        } else
-            $this->updatedAt = $updatedAt;
-        return $this;
-    }
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     /**
      * TPL:no_form
      * opt:{"label":"Supprimé le"}
      */
     private ?DateTime $deletedAt = null;
+
+    public function setUpdatedAt(?DateTime $updatedAt): self
+    {
+        if ($updatedAt === null) {
+            $updatedAt = new DateTime();
+        }
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
 
     public function getCreatedAt(): ?DateTime
     {
@@ -55,17 +58,22 @@ trait TimeTrait
     {
         return $this->updatedAt;
     }
+
     public function setCreatedAt(?DateTime $createdAt): self
     {
+        if ($createdAt === null) {
+            $createdAt = new DateTime();
+        }
         $this->createdAt = $createdAt;
         return $this;
     }
+
     public function setDeletedAt(?DateTime $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
-
         return $this;
     }
+
     public function getDeletedAt(): ?DateTime
     {
         return $this->deletedAt;
